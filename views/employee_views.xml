@@ -31,7 +31,7 @@
                             </group>
                         </h1>
                     </div>
-                    <div class="oe_avatar">
+                    <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px;">
                         <field name="employee_image" widget="image"/>
                     </div>
                     <group>
@@ -67,7 +67,6 @@
         </field>
     </record>
 
-
     <record id="employee_info_kanban" model="ir.ui.view">
         <field name="name">employee.info.kanban</field>
         <field name="model">employee.info</field>
@@ -100,7 +99,6 @@
         </field>
     </record>
 
-
     <record id="employee_info_calendar" model="ir.ui.view">
         <field name="name">employee.info.calendar</field>
         <field name="model">employee.info</field>
@@ -108,11 +106,12 @@
             <calendar date_start="dob" string="Employee Joining Calendar"
                     mode="month" color="emp_name">
                     <field name="emp_name"/>
+                    <field name="joining_date"/>
                     <field name="reference_number"/>
             </calendar>
         </field>
     </record>
-
+    
     <record id="employee_info_graph" model="ir.ui.view">
         <field name="name">employee.info.graph</field>
         <field name="model">employee.info</field>
@@ -139,13 +138,6 @@
         name="Employees"
         parent="coperate_root_menu"
         sequence="1"/>
-
-    <!-- <menuitem
-        id="menu_employee_info_action"
-        name="Employee Emergency details"
-        parent="employee_menu_category"
-        action="employee_action"
-        sequence="3"/> -->
 
     <menuitem
         id="menu_employee_info_action"
