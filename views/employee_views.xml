@@ -6,6 +6,7 @@
         <field name="model">employee.info</field>
         <field name="arch" type="xml">
             <list string="cases">
+                <field name="reference_number"/>
                 <field name="emp_name"/>
                 <field name="age"/>
                 <field name="dob"/>
@@ -24,6 +25,7 @@
                 <sheet>
                     <div class="oe_title">
                         <h1>
+                            <field name="reference_number"/>
                             <group>
                                 <field name="emp_name" string="Name"/>
                             </group>
@@ -73,9 +75,10 @@
             <kanban>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_global_click" style="position: relative; padding-right: 120px; min-height: 150px;">
-                            <div style="position: absolute; top: 0; right: 0; width: 70px; height: 70px;">
+                        <div class="oe_kanban_global_click" style="position: relative; padding-right: 150px; min-height: 150px;">
+                            <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px;">
                                 <field name="employee_image" widget="image"/>
+                                <field name="reference_number"/>
                             </div>
                             <strong>
                                 <h1>
@@ -105,6 +108,7 @@
             <calendar date_start="dob" string="Employee Joining Calendar"
                     mode="month" color="emp_name">
                     <field name="emp_name"/>
+                    <field name="reference_number"/>
             </calendar>
         </field>
     </record>
@@ -114,7 +118,7 @@
         <field name="model">employee.info</field>
         <field name="arch" type="xml">
             <graph string="Employee Overview" type="bar" stacked="1">
-                <field name="joining_date" type="row"/>
+                <field name="job_title" type="row"/>
             </graph>
         </field>
     </record>

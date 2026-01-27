@@ -9,6 +9,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/employee_views.xml',
+        'views/ir_sequence_data.xml',
     ],
     'author': "Somya",
     'installation':True,

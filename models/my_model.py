@@ -1,9 +1,11 @@
-from odoo import models, fields
+from odoo import _, api, models, fields
 
-class PatientInfo(models.Model):
+class EmployeeInfo(models.Model):
    _name = 'employee.info'
    _description = 'Employee Information'
 
+   _rec_name = 'reference_number'
+   reference_number = fields.Char(string='Sequence',copy=False,default=lambda self:_("New"),readonly=True, required=True)
    emp_name = fields.Char()
    age = fields.Integer(string="Age")
    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string='Gender')   
@@ -18,3 +20,11 @@ class PatientInfo(models.Model):
    emergency_con = fields.Char(string="Emergency contact", help="Enter phone number in international format")
    emergency_con_name = fields.Char(string="Emergency contact name")
    emergency_con_relation = fields.Char(string="Relation with emergency contact")
+
+   @api.model_create_multi
+   def create(self, vals_list):
+       """Create records using provided values."""
+       for vals in vals_list:
+           if vals.get('reference_number', _('New')) == _('New'):
+               vals['reference_number'] = self.env['ir.sequence'].next_by_code('employee.registration') or _('New')
+       return super(EmployeeInfo,self).create(vals_list)
