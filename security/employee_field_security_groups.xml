@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_employee_roles" model="ir.module.category">
+        <field name="name">Employee Roles Management</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="privilege_employee_management" model="res.groups.privilege">
+        <field name="name">Employee Hierarchy Access</field>
+        <field name="category_id" ref="module_category_employee_roles"/>
+    </record>
+
+    <record id="group_employee_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="privilege_employee_management"/>
+    </record>
+
+    <record id="group_employee_hr" model="res.groups">
+        <field name="name">hr</field>
+        <field name="privilege_id" ref="privilege_employee_management"/>
+        <field name="implied_ids" eval="[(4, ref('group_employee_user'))]"/>
+    </record>
+</odoo>
+
+
+<!-- 
+access_employee_software_dev,access.employee.software_dev,model_employee_software_dev,my_custom_module.group_employee_software_dev,1,1,1,1
+access_employee_software_tester,access.employee.software.tester,model_employee_software_tester,my_custom_module.group_employee_software_tester,1,1,1,0
+access_employee_odoo_professional,access.employee.odoo_professional,model_employee_odoo_professional,my_custom_module.group_employee_odoo_professional,1,1,1,1 -->

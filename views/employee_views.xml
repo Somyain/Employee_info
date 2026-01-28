@@ -50,8 +50,9 @@
                         <page string="Employee Detail">
                             <group>
                                 <field name="description" string="Description"/>
-                                <field name="job_title" string="Job Title"/>
+                                <field name="job_title" string="Job Title" groups="my_custom_module.group_employee_hr"/>
                                 <field name="work_location" string="Work Location"/>
+                                <field name="employee_salary" string="Employee Monthly income" groups="my_custom_module.group_employee_hr"/>
                             </group>
                         </page>
                         <page string="Employee emergency details">
@@ -74,15 +75,15 @@
             <kanban>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_global_click" style="position: relative; padding-right: 150px; min-height: 150px;">
+                        <div class="oe_kanban_global_click" style="position: relative; padding-right: 120px; min-height: 150px;">
                             <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px;">
                                 <field name="employee_image" widget="image"/>
-                                <field name="reference_number"/>
                             </div>
                             <strong>
                                 <h1>
                                     <field name="emp_name"/>
                                 </h1>
+                                <field name="reference_number"/>
                             </strong>
                             <div style="display: flex; justify-content: space-between;">
                                 <field name="gender"/>
@@ -117,7 +118,7 @@
         <field name="model">employee.info</field>
         <field name="arch" type="xml">
             <graph string="Employee Overview" type="bar" stacked="1">
-                <field name="job_title" type="row"/>
+                <field name="employee_salary" type="row"/>
             </graph>
         </field>
     </record>

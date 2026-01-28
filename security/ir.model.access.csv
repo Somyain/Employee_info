@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_employee_info,access.employee.info,model_employee_info,base.group_user,1,1,1,1
+access_employee_user,access.employee.user,model_employee_info,my_custom_module.group_employee_user,1,1,1,0
+access_employee_hr,access.employee.hr,model_employee_info,my_custom_module.group_employee_hr,1,1,1,1
