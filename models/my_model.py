@@ -34,6 +34,7 @@ class EmployeeInfo(models.Model):
    emergency_con = fields.Char(string="Emergency contact", help="Enter phone number in international format")
    emergency_con_name = fields.Char(string="Emergency contact name")
    emergency_con_relation = fields.Char(string="Relation with emergency contact")
+   user_id = fields.Many2one('res.users',default=lambda self:self.env.user)
 
    @api.model_create_multi
    def create(self, vals_list):

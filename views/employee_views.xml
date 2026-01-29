@@ -50,16 +50,16 @@
                         <page string="Employee Detail">
                             <group>
                                 <field name="description" string="Description"/>
-                                <field name="job_title" string="Job Title" groups="my_custom_module.group_employee_hr"/>
+                                <field name="job_title" string="Job Title"/>
                                 <field name="work_location" string="Work Location"/>
-                                <field name="employee_salary" string="Employee Monthly income" groups="my_custom_module.group_employee_hr"/>
+                                <field name="employee_salary" string="Employee Monthly income"/>
                             </group>
                         </page>
                         <page string="Employee emergency details">
                             <group>
-                                <field name="emergency_con_name" string="Emergency contact name"/>
+                                <field name="emergency_con_name" string="Emergency contact name" groups="my_custom_module.group_employee_hr"/>
                                 <field name="emergency_con" string="Emergency contact"/>
-                                <field name="emergency_con_relation" string="Relation with emergency contact"/>
+                                <field name="emergency_con_relation" string="Relation with emergency contact" groups="my_custom_module.group_employee_hr"/>
                             </group>
                         </page>
                     </notebook>
@@ -131,27 +131,26 @@
 
     <menuitem
         id="coperate_root_menu"
-        name="Employee Registeration"
-        sequence="10"/>
+        name="Employee Registeration"/>
 
     <menuitem
         id="employee_menu_category"
         name="Employees"
         parent="coperate_root_menu"
-        sequence="1"/>
+        sequence="10"/>
 
     <menuitem
         id="menu_employee_info_action"
         name="Employee List"
         parent="employee_menu_category"
         action="employee_action"
-        sequence="1"/>
+        sequence="10"/>
     
-    <!-- <menuitem
-        id="menu_employee_info_action"
+    <menuitem
+        id="menu_employee_emergency_action"
         name="Employee Emergency details"
         parent="employee_menu_category"
         action="employee_action"
-        sequence="3"/> -->
+        sequence="20"/>
 
 </odoo>
