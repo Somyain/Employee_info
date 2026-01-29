@@ -7,6 +7,7 @@
     """,
     'depends': ['base'],
     'data': [
+        'data/employee_registeration_data.xml',
         'security/ir_rule.xml',
         'security/employee_field_security_groups.xml',
         'security/ir.model.access.csv',

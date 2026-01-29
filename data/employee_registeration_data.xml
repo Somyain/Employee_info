@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="my_custom_module.add_employee_1" model="employee.info">
+        <field name="emp_name">Somya</field>
+        <field name="age">22</field>
+        <field name="gender">male</field>
+        <field name="phone">9509246769</field>
+        <field name="partner_email">jsomya629@gmail.com</field>
+        <field name="description">Working as a Software Developer Intern with codetrade.io</field>
+        <field name="job_title">software_dev</field>
+        <field name="work_location">jaipur</field>
+        <field name="emergency_con">9461531541</field>
+        <field name="emergency_con_name">Archana</field>
+        <field name="emergency_con_relation">Mother</field>
+    </record>
+    </data>
+    
+</odoo>
