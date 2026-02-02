@@ -1,0 +1,3 @@
+id,emp_name,phone,partner_email,emergency_con,emergency_con_name,emergency_con_relation,employee_salary
+emp_rec_01,John,8727919456,csv@import.io,xxxxxxxxxx,somya,dev,500000
+emp_rec_02,chotu,7564984635,csv@test.io,9254981462,somya,dev,505000

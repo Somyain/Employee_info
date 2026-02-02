@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="departement_odoo" model="employee.department">
+            <field name="dep_name">Odoo</field>
+        </record>
+
+        <record id="department_dotnet" model="employee.department">
+            <field name="dep_name">Dotnet(.net)</field>
+        </record>
+
+        <record id="department_hr" model="employee.department">
+            <field name="dep_name">HR</field>
+        </record>
+
+        <record id="department_react" model="employee.department">
+            <field name="dep_name">React</field>
+        </record>
+
+        <record id="department_aiml" model="employee.department">
+            <field name="dep_name">AIML</field>
+        </record>
+
+        <record id="department_digital_marketing" model="employee.department">
+            <field name="dep_name">Digital Marketing</field>
+        </record>
+
+        <record id="department_odoo_consultant" model="employee.department">
+            <field name="dep_name">Odoo Consultant</field>
+        </record>
+
+        <record id="department_manager" model="employee.department">
+            <field name="dep_name">Manager</field>
+        </record>
+
+    </data>
+</odoo>

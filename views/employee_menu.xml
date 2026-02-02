@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    <menuitem
+        id="coperate_root_menu"
+        name="Employee Registeration"
+        sequence="10"/>
+
+        <menuitem
+            id="employee_menu_category"
+            name="Employees"
+            parent="coperate_root_menu"
+            sequence="10"/>
+
+            <menuitem
+                id="menu_employee_info_action"
+                name="Employee List"
+                parent="employee_menu_category"
+                action="employee_action"
+                sequence="10"/>
+
+            <menuitem
+                id="menu_employee_emergency_action"
+                name="Employee Emergency details"
+                parent="employee_menu_category"
+                action="employee_action"
+                sequence="20"/>
+    </data>
+</odoo>

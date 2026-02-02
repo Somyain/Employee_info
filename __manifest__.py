@@ -7,12 +7,17 @@
     """,
     'depends': ['base'],
     'data': [
-        'data/employee_registeration_data.xml',
-        'security/ir_rule.xml',
-        'security/employee_field_security_groups.xml',
         'security/ir.model.access.csv',
-        'views/employee_views.xml',
+        'security/employee_field_security_groups.xml',
+
         'views/ir_sequence_data.xml',
+
+        'data/employee.info.csv',
+        'data/employee_data.xml',
+        'data/employee_department.xml',
+
+        'views/employee_menu.xml',
+        'views/employee_views.xml',
     ],
     'author': "Somya",
     'installation':True,
