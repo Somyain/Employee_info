@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields , api
 
 class EmployeeSkill(models.Model):
     _name = 'employee.skill'
@@ -12,3 +12,11 @@ class EmployeeSkill(models.Model):
          string="Skill level"
     )
     employee_id = fields.Many2one('employee.info',string="Employee")
+
+    @api.model
+    def search(self ,employee , domain = None):
+        domain = list(domain or [])
+        if employee and employee.name:
+            domain.append(('name', 'ilike', employee.name))
+        result = self.env['employee.info'].search(domain)
+        return result

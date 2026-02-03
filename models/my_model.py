@@ -1,4 +1,5 @@
-from odoo import _, api, models, fields
+from odoo import _, api, models, fields 
+from odoo.exceptions import UserError
 
 class EmployeeInfo(models.Model):
     _name = 'employee.info'
@@ -20,12 +21,14 @@ class EmployeeInfo(models.Model):
     description = fields.Text(string="Description")
     employee_image = fields.Binary(string="Employee Image")
     employee_salary = fields.Integer( string='Employee Monthly income', required=True, tracking=True, help="Basic salary of the employee.")
+    per_month_salary = fields.Integer('Salary per/month',compute = '_compute_salary',store=False)
     job_title = fields.Selection(
         [('software_dev','Software Developer'),
         ('software_test','Software tester'),
         ('hr','HR'),
         ('ai/ml','AI/ML'),
-        ('odoo_professional','Odoo Professional')
+        ('odoo_professional','Odoo Professional'),
+        ('none','None'),
         ] , string="job Title")
     work_location = fields.Selection(
         [('jaipur','Jaipur'),
@@ -57,7 +60,15 @@ class EmployeeInfo(models.Model):
                 record.age = delta.days // 365
             else:
                 record.age = 0
-    
+
+    @api.onchange('employee_salary')
+    def _compute_salary(self):
+        for record in self:
+            if record.employee_salary:
+                record.per_month_salary = record.employee_salary / 12
+            else :
+                record.per_month_salary = 0
+
     def copy(self, default=None):
         default = dict(default or {})
         default['emp_name'] = ''
@@ -68,3 +79,9 @@ class EmployeeInfo(models.Model):
         if 'job_title' in vals:
             vals['description'] = f"Job title updated to {vals['job_title']}"
         return super(EmployeeInfo, self).write(vals)
+
+    def unlink(self):
+        for record in self:
+            if record.job_title != 'none':
+                raise UserError(_(f"Record cannot be delete,\nContains a Job Title {self.job_title}"))
+        return super(EmployeeInfo ,self).unlink()
