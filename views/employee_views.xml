@@ -47,7 +47,7 @@
                 <field name="reference_number"/>
                 <field name="emp_name"/>
                 <field name="phone"/>
-                <field name="partner_email" widget="email"/>
+                <field name="partner_email"/>
                 <field name="date_of_birth"/>
                 <field name="age"/>
                 <field name="gender"/>
@@ -88,10 +88,11 @@
                     <notebook>
                         <page string="Employee Detail">
                             <group>
-                                <field name="description" string="About yourself"/>
+                                <field name="description" string="Description"/>
                                 <field name="job_title" string="Job Title"/>
                                 <field name="work_location" string="Work Location"/>
-                                <field name="employee_salary" string="Employee Monthly income"/>
+                                <field name="employee_salary" string="Employee Annual Package"/>
+                                <field name="per_month_salary" string="Employee Monthly income"/>
                                 <field name="user_id" string="Reporting Manager"/>
                             </group>
                         </page>

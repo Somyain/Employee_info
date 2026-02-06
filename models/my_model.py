@@ -85,3 +85,54 @@ class EmployeeInfo(models.Model):
             if record.job_title != 'none':
                 raise UserError(_(f"Record cannot be delete,\nContains a Job Title {self.job_title}"))
         return super(EmployeeInfo ,self).unlink()
+    
+    def _send_birthday_followup(self):
+        today = fields.Date.today()
+        employees = self.search([
+            ('date_of_birth', '!=', False),
+            ('partner_email', '!=', False),
+        ])
+        template = self.env.ref(
+            'my_custom_module.birthday_mail_template_abc',
+        )
+        if not template:
+            return
+        for employee in employees:
+            dob = employee.date_of_birth
+            if dob.day == today.day and dob.month == today.month:
+                template.send_mail(
+                    employee.id,
+                    force_send=True
+                )
+
+    @api.constrains('partner_email')
+    def _check_partner_email(self):
+        for record in self:
+            if not record.partner_email:
+                continue
+            email = record.partner_email
+            if email != email.lower():
+                raise UserError("Email must be lowercase")
+            if email.count('@') != 1:
+                raise UserError("Email must contain exactly one '@'")
+            if ' ' in email:
+                raise UserError("Email must not contain spaces")
+            username_part, domain = email.split('@')
+            valid_chars = set(".-_")
+            if not username_part or not domain:
+                raise UserError("Username and domain cannot be empty")
+            if username_part[0].isdigit() or username_part[0] in valid_chars:
+                raise UserError("Username cannot start with number or special character")
+            if not all(ch.islower() or ch.isdigit() or ch in valid_chars for ch in username_part):
+                raise UserError("Username contains invalid characters")
+            if '.' not in domain:
+                raise UserError("Domain must contain '.'")
+            domain_parts = domain.split('.')
+            domain_name = domain_parts[0]
+            domain_ext = domain_parts[-1]
+            if len(domain_ext) < 2:
+                raise UserError("Invalid domain extension")
+            if not domain_name.isalpha():
+                raise UserError("Domain name must contain only letters")
+            if domain.startswith('.') or domain.endswith('.'):
+                raise UserError("Domain cannot start or end with '.'")

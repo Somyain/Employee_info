@@ -5,7 +5,7 @@
     'description': """ 
                     Working at codetrade.io as Software Developer Intern
     """,
-    'depends': ['base'],
+    'depends': ['base','mail'],
     'data': [
         'security/ir.model.access.csv',
         'security/employee_field_security_groups.xml',

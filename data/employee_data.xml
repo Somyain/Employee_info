@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+
         <record id="add_employee_data" model="employee.info">
             <field name="emp_name">Sneha</field>
             <field name="gender">female</field>
@@ -14,5 +15,89 @@
             <field name="emergency_con_relation">Brother</field>
             <field name="description">Enjoying life so hard</field>
         </record>
+
+        <record id="employee_birthday_mails" model="ir.cron">
+            <field name="name">Birthday</field>
+            <field name="model_id" ref="model_employee_info"/>
+            <!-- <field name="state">code</field> -->
+            <field name="code">model._send_birthday_followup()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 02:30:00')"/>
+            <field name="priority">5</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="birthday_mail_template" model="mail.template">
+            <field name="name">Birthday Wish Email Template</field>
+            <field name="model_id" ref="model_employee_info"/>
+            <!-- <field name="email_from">snehakhandelwal125@gmail.com</field> -->
+            <field name="email_to">{{object.partner_email }}</field>
+            <field name="subject">Many many returns of the day {{ object.emp_name}}</field>
+            <field name="body_html" type="html">
+                <div style="font-family: Arial, sans-serif; font-size: 14px; color: #000000;">
+                    <p> Dear
+                        <strong>
+                            <t t-esc="object.emp_name"/>
+                        </strong>
+                    </p>
+                    <p>
+                        We hope you are doing well and have a great day ,
+                        here are some small gift for you !!...
+                    </p>
+                    <table style="border: 1px solid #080101; border-collapse: collapse; width: 100%; margin-top: 10px;">
+                        <thead>
+                            <tr style="background-color: #b1712d97; text-align: left;">
+                                <th style="border: 1px solid #000000; padding: 8px;">Cake 🎉🎉🎉</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </field>
+        </record>
+
     </data>
 </odoo>
+
+<!-- p-4-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'******ek@codetrade.io'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:15,737 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:15,747 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [49] 
+odoo19_app  | 2026-02-06 11:37:16,748 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [398] 
+odoo19_app  | 2026-02-06 11:37:18,809 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 50 and Message-Id '<886778232123943.1770376120.220475673675537-openerp-4-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'******ek@codetrade.io'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:18,809 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:18,816 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [50] 
+odoo19_app  | 2026-02-06 11:37:18,830 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [399] 
+odoo19_app  | 2026-02-06 11:37:21,944 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 51 and Message-Id '<500840068216505.1770376120.239580392837524-openerp-24-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'*******29@gmail.com'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:21,944 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:21,954 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [51] 
+odoo19_app  | 2026-02-06 11:37:21,971 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [400] 
+odoo19_app  | 2026-02-06 11:37:26,903 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 52 and Message-Id '<403954963900964.1770377503.228945732116699-openerp-4-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'*******29@gmail.com'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:26,903 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:26,910 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [52] 
+odoo19_app  | 2026-02-06 11:37:26,918 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [401] 
+odoo19_app  | 2026-02-06 11:37:29,150 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 53 and Message-Id '<035207699703564.1770377503.236733913421631-openerp-24-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'*******29@gmail.com'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:29,150 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:29,158 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [53] 
+odoo19_app  | 2026-02-06 11:37:29,170 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [402] 
+odoo19_app  | 2026-02-06 11:37:30,313 1 INFO test_db_1 odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) starting 
+odoo19_app  | 2026-02-06 11:37:30,745 1 INFO test_db_1 odoo.addons.base.models.res_users: GC 'auth_totp.device' delete 0 entries 
+odoo19_app  | 2026-02-06 11:37:31,301 1 INFO test_db_1 odoo.addons.base.models.res_users: GC'd 0 user log entries 
+odoo19_app  | 2026-02-06 11:37:31,382 1 INFO test_db_1 odoo.addons.sms.models.sms_sms: GC'd 0 sms marked for deletion 
+odoo19_app  | 2026-02-06 11:37:31,506 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 54 and Message-Id '<358071171554865.1770377814.554511547088623-openerp-4-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'*******29@gmail.com'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:31,506 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:31,517 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [54] 
+odoo19_app  | 2026-02-06 11:37:31,530 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [403] 
+odoo19_app  | 2026-02-06 11:37:31,753 1 INFO test_db_1 odoo.addons.base.models.res_device: GC device logs delete 0 entries 
+odoo19_app  | 2026-02-06 11:37:33,407 1 INFO test_db_1 odoo.addons.api_doc.models.ir_attachment: GC'd 0 /doc cached index 
+odoo19_app  | 2026-02-06 11:37:33,657 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Mail (mail.mail) with ID 55 and Message-Id '<786312698782244.1770377814.568085432052612-openerp-24-employee.info@e93ceecabd5b>' from 'jsomya629@gmail.com' to (redacted) "'*******29@gmail.com'" successfully sent 
+odoo19_app  | 2026-02-06 11:37:33,657 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Total emails tried by SMTP: 1 
+odoo19_app  | 2026-02-06 11:37:33,668 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.mail records with IDs: [55] 
+odoo19_app  | 2026-02-06 11:37:33,683 1 INFO test_db_1 odoo.models.unlink: User #1 deleted mail.message records with IDs: [404] 
+odoo19_app  | 2026-02-06 11:37:33,703 1 INFO test_db_1 odoo.addons.mail.models.mail_mail: Processed batch of 7 mail.mail records via mail server ID #3 
+odoo19_app  | 2026-02-06 11:37:33,786 1 INFO test_db_1 odoo.addons.base.models.res_users: GC 'res.users.apikeys' delete 0 entries 
+odoo19_app  | 2026-02-06 11:37:34,031 1 INFO test_db_1 odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) fully done (#loop 1; done 0; remaining 0; duration 23.24s) 
+odoo19_app  | 2026-02-06 11:37:34,278 1 INFO test_db_1 odoo.addons.base.models.res_device: GC device logs delete 0 entries 
+odoo19_app  | 2026-02-06 11:37:34,687 1 INFO test_db_1 odoo.addons.base.models.ir_attachment: filestore gc 0 checked, 0 removed 
+odoo19_app  | 2026-02-06 11:37:35,264 1 INFO test_db_1 odoo.models.unlink: User #1 deleted ir.cron.progress records with IDs: [603, 604] 
+odoo19_app  | 2026-02-06 11:37:35,899 1 INFO test_db_1 odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) fully done (#loop 1; done 108; remaining 0; duration 5.59s)  -->

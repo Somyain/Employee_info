@@ -34,5 +34,9 @@
             <field name="dep_name">Manager</field>
         </record>
 
+        <record id="no_department" model="employee.department">
+            <field name="dep_name">None</field>
+        </record>
+
     </data>
 </odoo>
