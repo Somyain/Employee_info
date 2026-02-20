@@ -3,3 +3,4 @@ access_employee_user,employee.user,model_employee_info,,1,1,1,0
 access_employee_hr,employee.hr,model_employee_info,,1,1,1,1
 access_employee_skill_hr,employee.skill,model_employee_skill,,1,1,1,1
 access_employee_department_hr,employee.department,model_employee_department,,1,1,1,1
+access_employee_info_public,access_employee_info_public,model_employee_info,base.group_public,1,0,0,0

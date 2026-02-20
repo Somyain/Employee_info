@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_sales_excel" model="ir.actions.server">
+        <field name="name">Sales Excel</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="state">code</field>
+        <field name="code">
+action = records.action_print_sales_excel()
+        </field>
+    </record>
+
+    <data>
+        <record id="view_order_form_inherit_employee" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.employee</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="employee_id" placeholder="Select Employee..."/>
+                    <field name="display_employee_name"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

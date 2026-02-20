@@ -5,7 +5,7 @@
     'description': """ 
                     Working at codetrade.io as Software Developer Intern
     """,
-    'depends': ['base','mail'],
+    'depends': ['base','mail','sale','website'],
     'data': [
         'security/ir.model.access.csv',
         'security/employee_field_security_groups.xml',
@@ -18,6 +18,9 @@
 
         'views/employee_menu.xml',
         'views/employee_views.xml',
+        'views/sale_order_view.xml',
+
+        'views/employee_website_form.xml',
     ],
     'author': "Somya",
     'installation':True,

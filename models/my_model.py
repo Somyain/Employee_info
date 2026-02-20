@@ -1,5 +1,6 @@
 from odoo import _, api, models, fields 
 from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 class EmployeeInfo(models.Model):
     _name = 'employee.info'
@@ -7,6 +8,7 @@ class EmployeeInfo(models.Model):
 
     _rec_name = 'reference_number'
     reference_number = fields.Char(string='Sequence',copy=False,default=lambda self:_("New"),readonly=True)
+    _order = 'reference_number desc'
     emp_name = fields.Char(required=True)
     gender = fields.Selection(
         [('male', 'Male'),
@@ -136,3 +138,29 @@ class EmployeeInfo(models.Model):
                 raise UserError("Domain name must contain only letters")
             if domain.startswith('.') or domain.endswith('.'):
                 raise UserError("Domain cannot start or end with '.'")
+        
+    # @api.model
+    # def create_employee_via_api(self, vals):
+    #     employee = self.create(vals)
+    #     return {
+    #         'id': employee.id,
+    #         'reference_number': employee.reference_number,
+    #         'name': employee.emp_name
+    #     }
+
+    @api.constrains('partner_email')
+    def _check_unique_partner_email(self):
+        for record in self:
+            if not record.partner_email:
+                continue
+
+            duplicate = self.search([
+                ('partner_email', '=', record.partner_email),
+                ('id', '!=', record.id)
+            ], limit=1)
+
+            if duplicate:
+                raise ValidationError(
+                    _("An employee with email '%s' already exists.") 
+                    % record.partner_email
+                )

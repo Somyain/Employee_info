@@ -48,10 +48,9 @@
                 <field name="emp_name"/>
                 <field name="phone"/>
                 <field name="partner_email"/>
-                <field name="date_of_birth"/>
-                <field name="age"/>
                 <field name="gender"/>
                 <field name="date_of_birth"/>
+                <field name="age"/>
             </list>
         </field>
     </record> 

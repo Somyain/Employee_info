@@ -2,17 +2,17 @@
 <odoo>
     <data noupdate="1">
 
-        <record id="add_employee_data" model="employee.info">
-            <field name="emp_name">Sneha</field>
-            <field name="gender">female</field>
-            <field name="phone">7429468448</field>
-            <field name="partner_email">rupali@employee.io</field>
-            <field name="employee_salary">250000</field>
-            <field name="job_title">software_test</field>
-            <field name="work_location">ahemdabad</field>
-            <field name="emergency_con">9454251742</field>
-            <field name="emergency_con_name">Rao</field>
-            <field name="emergency_con_relation">Brother</field>
+        <record id="add_employee_data1" model="employee.info">
+            <field name="emp_name">Somya</field>
+            <field name="gender">male</field>
+            <field name="phone">9509246769</field>
+            <field name="partner_email">admin@dev.io</field>
+            <field name="employee_salary">4000000</field>
+            <field name="job_title">software_dev</field>
+            <field name="work_location">jaipur</field>
+            <field name="emergency_con">9509246769</field>
+            <field name="emergency_con_name">Somya</field>
+            <field name="emergency_con_relation">Myself</field>
             <field name="description">Enjoying life so hard</field>
         </record>
 
